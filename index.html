@@ -88,13 +88,21 @@
   }
 
   /* ===== HERO ===== */
-  .hero{padding:40px 16px 32px;position:relative;overflow:hidden}
-  .hero::after{
-    content:'WIN';position:absolute;right:-30px;bottom:-34px;
-    font-weight:700;font-style:italic;font-size:150px;line-height:1;
-    color:transparent;-webkit-text-stroke:1px var(--line);
+  .hero{padding:0 16px 32px;position:relative;overflow:hidden}
+  .hero-ribbon{
+    display:block;
+    width:126%;max-width:none;
+    margin:14px -13% 6px;
+    transform:rotate(-3deg);
+    filter:drop-shadow(0 16px 30px rgba(255,106,19,.28));
+    animation:ribbon-in .8s cubic-bezier(.2,.8,.2,1) both;
     pointer-events:none;user-select:none;
   }
+  @keyframes ribbon-in{
+    from{opacity:0;transform:rotate(-3deg) translateX(-40px)}
+    to{opacity:1;transform:rotate(-3deg) translateX(0)}
+  }
+  @media (prefers-reduced-motion:reduce){.hero-ribbon{animation:none}}
   .eyebrow{
     display:inline-block;
     font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
@@ -280,6 +288,7 @@
 </div>
 
 <section class="hero">
+  <img class="hero-ribbon" src="assets/ribbon.png" alt="" aria-hidden="true">
   <div class="eyebrow">Легальный букмекер · с 2009</div>
   <h1>Здесь<br>ставят<br><span class="accent">на своих</span></h1>
   <p>Winline — один из крупнейших букмекеров России. Топовые коэффициенты, бесплатные трансляции и выплаты за минуты.</p>
