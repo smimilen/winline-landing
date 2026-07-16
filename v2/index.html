@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Winline — ставки на спорт №1 в России</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,700;0,800;0,900;1,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#FF4200;
+    --orange-hot:#FF6A13;
+    --bg:#0C0C0E;
+    --bg-card:#141417;
+    --bg-elev:#1B1B1F;
+    --line:#26262B;
+    --text:#FFFFFF;
+    --muted:#8E8E96;
+    --green:#2ED573;
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    max-width:480px;
+    margin:0 auto;
+    overflow-x:hidden;
+    padding-bottom:92px;
+  }
+  .display{font-family:'Inter Tight',system-ui,sans-serif}
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    background:rgba(12,12,14,.82);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:'Inter Tight';font-weight:900;font-style:italic;
+    font-size:24px;letter-spacing:-.5px;text-transform:uppercase;
+  }
+  .logo span{color:var(--orange)}
+  .header-btn{
+    font-family:'Inter Tight';font-weight:800;font-size:13px;
+    text-transform:uppercase;letter-spacing:.4px;
+    color:#fff;background:var(--orange);
+    border:none;border-radius:12px;padding:10px 16px;cursor:pointer;
+  }
+
+  /* ===== TICKER ===== */
+  .ticker-wrap{
+    overflow:hidden;border-bottom:1px solid var(--line);
+    background:var(--bg-card);padding:10px 0;
+  }
+  .ticker{display:flex;gap:10px;width:max-content;animation:scroll 28s linear infinite}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.ticker{animation:none}}
+  .match{
+    display:flex;align-items:center;gap:8px;
+    background:var(--bg-elev);border:1px solid var(--line);
+    border-radius:12px;padding:8px 12px;white-space:nowrap;
+  }
+  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite}
+  @keyframes pulse{50%{opacity:.3}}
+  .match b{font-size:12px;font-weight:600}
+  .coef{
+    font-family:'Inter Tight';font-weight:800;font-size:12px;
+    color:var(--orange-hot);background:rgba(255,66,0,.12);
+    border-radius:6px;padding:2px 7px;
+  }
+
+  /* ===== HERO ===== */
+  .hero{padding:44px 20px 36px;position:relative;overflow:hidden}
+  .hero::before{
+    content:'';position:absolute;top:-120px;right:-140px;
+    width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,66,0,.32),transparent 65%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--orange-hot);margin-bottom:18px;
+  }
+  .eyebrow::before{content:'';width:22px;height:2px;background:var(--orange)}
+  h1{
+    font-family:'Inter Tight';font-weight:900;font-style:italic;
+    font-size:clamp(40px,11vw,52px);line-height:.96;
+    text-transform:uppercase;letter-spacing:-1px;
+  }
+  h1 .accent{color:var(--orange)}
+  .hero p{color:var(--muted);font-size:15px;line-height:1.55;margin:18px 0 26px;max-width:34ch}
+  .freebet{
+    position:relative;
+    background:linear-gradient(135deg,var(--orange) 0%,#E63600 100%);
+    border-radius:var(--radius);padding:22px 20px;
+    transform:rotate(-1.2deg);
+    box-shadow:0 18px 40px -14px rgba(255,66,0,.55);
+  }
+  .freebet-inner{transform:rotate(1.2deg)}
+  .freebet .fb-label{font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;opacity:.85}
+  .freebet .fb-sum{
+    font-family:'Inter Tight';font-weight:900;font-style:italic;
+    font-size:44px;line-height:1;text-transform:uppercase;margin:6px 0 2px;
+  }
+  .freebet .fb-note{font-size:12px;opacity:.85}
+
+  /* ===== SECTIONS ===== */
+  section{padding:40px 20px 8px}
+  h2{
+    font-family:'Inter Tight';font-weight:900;font-style:italic;
+    font-size:30px;line-height:1;text-transform:uppercase;
+    letter-spacing:-.5px;margin-bottom:22px;
+  }
+  h2 .accent{color:var(--orange)}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{
+    background:var(--bg-card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:18px 16px;
+  }
+  .stat .num{
+    font-family:'Inter Tight';font-weight:900;font-style:italic;
+    font-size:30px;color:var(--orange-hot);line-height:1;
+  }
+  .stat .cap{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4}
+  .stat.wide{grid-column:span 2;display:flex;align-items:center;gap:16px}
+  .stat.wide .num{font-size:26px}
+
+  /* advantages */
+  .adv-list{display:flex;flex-direction:column;gap:10px}
+  .adv{
+    background:var(--bg-card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:20px 18px;
+    display:flex;gap:14px;align-items:flex-start;
+    position:relative;overflow:hidden;
+  }
+  .adv .icon{
+    flex:none;width:44px;height:44px;border-radius:14px;
+    background:rgba(255,66,0,.12);
+    display:flex;align-items:center;justify-content:center;font-size:20px;
+  }
+  .adv h3{font-family:'Inter Tight';font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:.2px;margin-bottom:5px}
+  .adv p{font-size:13px;color:var(--muted);line-height:1.5}
+  .adv.featured{
+    background:linear-gradient(160deg,rgba(255,66,0,.16),var(--bg-card) 60%);
+    border-color:rgba(255,66,0,.4);
+  }
+
+  /* partners */
+  .partners{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-family:'Inter Tight';font-weight:700;font-size:13px;
+    text-transform:uppercase;letter-spacing:.3px;
+    border:1px solid var(--line);background:var(--bg-card);
+    border-radius:999px;padding:9px 16px;color:#D6D6DC;
+  }
+  .chip.hl{border-color:rgba(255,66,0,.5);color:var(--orange-hot)}
+  .partners-note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}
+
+  /* steps */
+  .steps{display:flex;flex-direction:column;gap:0}
+  .step{display:flex;gap:16px;position:relative;padding-bottom:26px}
+  .step:last-child{padding-bottom:0}
+  .step::before{
+    content:'';position:absolute;left:17px;top:38px;bottom:4px;
+    width:2px;background:var(--line);
+  }
+  .step:last-child::before{display:none}
+  .step-num{
+    flex:none;width:36px;height:36px;border-radius:50%;
+    background:var(--orange);color:#fff;
+    font-family:'Inter Tight';font-weight:900;font-style:italic;font-size:15px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step h3{font-family:'Inter Tight';font-weight:800;font-size:15px;text-transform:uppercase;margin:7px 0 4px}
+  .step p{font-size:13px;color:var(--muted);line-height:1.5}
+
+  /* app */
+  .app-card{
+    background:var(--bg-card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:24px 20px;text-align:center;
+  }
+  .app-card .phone{
+    font-size:40px;margin-bottom:12px;display:block;
+  }
+  .app-card h3{font-family:'Inter Tight';font-weight:900;font-style:italic;font-size:22px;text-transform:uppercase;margin-bottom:8px}
+  .app-card p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:18px}
+  .store-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .store{
+    font-size:12px;font-weight:600;color:#fff;
+    border:1px solid var(--line);background:var(--bg-elev);
+    border-radius:12px;padding:10px 14px;
+  }
+
+  /* footer */
+  footer{padding:36px 20px 24px;border-top:1px solid var(--line);margin-top:44px}
+  .badge18{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:50%;
+    border:2px solid var(--orange);color:var(--orange);
+    font-family:'Inter Tight';font-weight:900;font-size:15px;
+    margin-bottom:14px;
+  }
+  footer p{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+
+  /* sticky CTA */
+  .sticky-cta{
+    position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+    width:100%;max-width:480px;z-index:60;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top,var(--bg) 65%,transparent);
+  }
+  .cta-btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;border:none;cursor:pointer;
+    background:var(--orange);color:#fff;
+    font-family:'Inter Tight';font-weight:900;font-style:italic;
+    font-size:17px;text-transform:uppercase;letter-spacing:.4px;
+    border-radius:16px;padding:17px;
+    box-shadow:0 10px 30px -8px rgba(255,66,0,.6);
+    transition:transform .15s;
+  }
+  .cta-btn:active{transform:scale(.97)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">win<span>line</span></div>
+  <button class="header-btn">Войти</button>
+</header>
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker" id="ticker"></div>
+</div>
+
+<section class="hero">
+  <div class="eyebrow">Легальный букмекер · с 2009 года</div>
+  <h1>Здесь<br>ставят<br><span class="accent">на своих</span></h1>
+  <p>Winline — один из крупнейших букмекеров России. Топовые коэффициенты, бесплатные трансляции и выплаты за минуты.</p>
+  <div class="freebet">
+    <div class="freebet-inner">
+      <div class="fb-label">Фрибет новичкам</div>
+      <div class="fb-sum">3 000 ₽</div>
+      <div class="fb-note">без депозита — сразу после регистрации</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="reveal">Winline <span class="accent">в цифрах</span></h2>
+  <div class="stats">
+    <div class="stat reveal"><div class="num">17</div><div class="cap">лет на рынке ставок в России</div></div>
+    <div class="stat reveal"><div class="num">1000+</div><div class="cap">событий в линии каждый день</div></div>
+    <div class="stat reveal"><div class="num">150</div><div class="cap">рынков на топ-матчи АПЛ и Лиги чемпионов</div></div>
+    <div class="stat reveal"><div class="num">24/7</div><div class="cap">служба поддержки на связи</div></div>
+    <div class="stat wide reveal">
+      <div class="num">РПЛ</div>
+      <div class="cap">Генеральный партнёр Российской Премьер-Лиги</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="reveal">Почему <span class="accent">Winline</span></h2>
+  <div class="adv-list">
+    <div class="adv featured reveal">
+      <div class="icon">⚡</div>
+      <div>
+        <h3>Быстрые выплаты</h3>
+        <p>Вывод на карту за считаные минуты. Все операции через Единый ЦУПИС — легально и безопасно.</p>
+      </div>
+    </div>
+    <div class="adv reveal">
+      <div class="icon">📈</div>
+      <div>
+        <h3>Топовые коэффициенты</h3>
+        <p>Одни из лучших котировок на рынке — то, что действительно важно для игрока.</p>
+      </div>
+    </div>
+    <div class="adv reveal">
+      <div class="icon">📺</div>
+      <div>
+        <h3>Бесплатные трансляции</h3>
+        <p>Футбол, хоккей, теннис, MMA и киберспорт в прямом эфире. Можно смотреть два матча одновременно.</p>
+      </div>
+    </div>
+    <div class="adv reveal">
+      <div class="icon">🎁</div>
+      <div>
+        <h3>Кешбэк и фрибеты</h3>
+        <p>Программа Winline Priority: кешбэк с каждой ставки, ежемесячные фрибеты и бонусы за активность.</p>
+      </div>
+    </div>
+    <div class="adv reveal">
+      <div class="icon">🛡️</div>
+      <div>
+        <h3>Лицензия ФНС России</h3>
+        <p>Официальный оператор ставок. Честная игра, прозрачные правила, своевременные выплаты.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="reveal">Ставим <span class="accent">на своих</span></h2>
+  <div class="partners reveal">
+    <div class="chip hl">РПЛ</div>
+    <div class="chip">Спартак</div>
+    <div class="chip">Зенит</div>
+    <div class="chip">Краснодар</div>
+    <div class="chip">Ак Барс</div>
+    <div class="chip">Трактор</div>
+    <div class="chip">Автомобилист</div>
+    <div class="chip hl">Virtus.pro</div>
+  </div>
+  <p class="partners-note reveal">Амбассадоры бренда — Рональдиньо, Даниил Медведев, Андрей Рублёв и Константин Генич.</p>
+</section>
+
+<section>
+  <h2 class="reveal">Как <span class="accent">начать</span></h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div><h3>Регистрация</h3><p>Укажите телефон и данные — займёт пару минут.</p></div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <div><h3>Верификация</h3><p>Подтвердите личность онлайн — по документам или видеоверификацией в приложении.</p></div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <div><h3>Фрибет 3 000 ₽</h3><p>Получите приветственный фрибет и сделайте первую ставку.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="app-card reveal">
+    <span class="phone">📱</span>
+    <h3>Приложение Winline</h3>
+    <p>Ставки, трансляции, фрибеты и вывод средств — всё в одном приложении для iOS и Android.</p>
+    <div class="store-row">
+      <div class="store"> App Store</div>
+      <div class="store">APK с сайта</div>
+      <div class="store">RuStore</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="badge18">18+</div>
+  <p>Букмекерская компания Winline. ООО «Управляющая компания НКС». Лицензия ФНС России № 7 от 09.07.2009. Все интерактивные ставки проходят через Единый ЦУПИС.</p>
+  <p>Азартные игры могут вызывать зависимость. Играйте ответственно. Участие только для лиц старше 18 лет.</p>
+  <p>© 2026 Winline. Концепт-лендинг.</p>
+</footer>
+
+<div class="sticky-cta">
+  <button class="cta-btn">Забрать фрибет 3 000 ₽ →</button>
+</div>
+
+<script>
+  // live ticker
+  const matches = [
+    ['Спартак — Зенит','2.45'],
+    ['Краснодар — ЦСКА','1.90'],
+    ['Ак Барс — Трактор','2.10'],
+    ['Медведев — Алькарас','3.20'],
+    ['Virtus.pro — NaVi','1.75'],
+    ['Локомотив — Динамо','2.60'],
+  ];
+  const item = ([m,c]) => `<div class="match"><span class="live-dot"></span><b>${m}</b><span class="coef">${c}</span></div>`;
+  const half = matches.map(item).join('');
+  document.getElementById('ticker').innerHTML = half + half;
+
+  // scroll reveal
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
