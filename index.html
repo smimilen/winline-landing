@@ -22,18 +22,16 @@
   }
   :root{
     --orange:#FF6A13;
-    --orange-deep:#E85200;
-    --bg:#0C0C0E;
-    --bg-card:#141419;
-    --bg-elev:#1B1B21;
-    --line:#26262B;
+    --black:#141419;
+    --bg:#0B0B0E;
+    --line:#2A2A31;
     --text:#FFFFFF;
     --muted:#8E8E96;
     --green:#2ED573;
-    --radius:20px;
   }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;border-radius:0}
   html{scroll-behavior:smooth}
+  ::selection{background:var(--orange);color:#fff}
   body{
     font-family:'WINLINE Sans',system-ui,sans-serif;
     background:var(--bg);
@@ -41,184 +39,201 @@
     max-width:480px;
     margin:0 auto;
     overflow-x:hidden;
-    padding-bottom:92px;
+    padding-bottom:96px;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
   }
 
   /* ===== HEADER ===== */
   header{
     position:sticky;top:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
-    padding:12px 20px;
-    background:rgba(12,12,14,.82);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
-    border-bottom:1px solid var(--line);
+    padding:12px 16px;
+    background:rgba(11,11,14,.88);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:2px solid var(--orange);
   }
   .logo svg{display:block;height:30px;width:auto}
-  .header-btn{
-    font-family:'WINLINE Sans';font-weight:700;font-size:13px;
+  .btn-pill{
+    font-family:'WINLINE Sans';font-weight:700;font-style:italic;
     text-transform:uppercase;letter-spacing:.4px;
     color:#fff;background:var(--orange);
-    border:none;border-radius:12px;padding:10px 16px;cursor:pointer;
+    border:none;border-radius:999px;cursor:pointer;
   }
+  .header-btn{font-size:13px;padding:10px 18px}
 
   /* ===== TICKER ===== */
   .ticker-wrap{
-    overflow:hidden;border-bottom:1px solid var(--line);
-    background:var(--bg-card);padding:10px 0;
+    overflow:hidden;
+    background:var(--black);
+    border-bottom:1px solid var(--line);
+    padding:0;
   }
-  .ticker{display:flex;gap:10px;width:max-content;animation:scroll 28s linear infinite}
+  .ticker{display:flex;width:max-content;animation:scroll 26s linear infinite}
   @keyframes scroll{to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion:reduce){.ticker{animation:none}}
   .match{
     display:flex;align-items:center;gap:8px;
-    background:var(--bg-elev);border:1px solid var(--line);
-    border-radius:12px;padding:8px 12px;white-space:nowrap;
+    padding:10px 14px;white-space:nowrap;
+    border-right:1px solid var(--line);
   }
-  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.4s infinite}
+  .live-dot{width:6px;height:6px;background:var(--green);animation:pulse 1.4s infinite}
   @keyframes pulse{50%{opacity:.3}}
-  .match b{font-size:12px;font-weight:700}
+  .match b{font-size:12px;font-weight:700;text-transform:uppercase}
   .coef{
     font-weight:700;font-style:italic;font-size:12px;
-    color:var(--orange);background:rgba(255,106,19,.12);
-    border-radius:6px;padding:2px 7px;
+    color:var(--black);background:var(--orange);
+    padding:2px 8px;
   }
 
   /* ===== HERO ===== */
-  .hero{padding:44px 20px 36px;position:relative;overflow:hidden}
-  .hero::before{
-    content:'';position:absolute;top:-120px;right:-140px;
-    width:340px;height:340px;border-radius:50%;
-    background:radial-gradient(circle,rgba(255,106,19,.32),transparent 65%);
-    pointer-events:none;
+  .hero{padding:40px 16px 32px;position:relative;overflow:hidden}
+  .hero::after{
+    content:'WIN';position:absolute;right:-30px;bottom:-34px;
+    font-weight:700;font-style:italic;font-size:150px;line-height:1;
+    color:transparent;-webkit-text-stroke:1px var(--line);
+    pointer-events:none;user-select:none;
   }
   .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
-    color:var(--orange);margin-bottom:18px;
+    display:inline-block;
+    font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+    color:var(--black);background:var(--orange);
+    padding:5px 10px;margin-bottom:20px;
   }
-  .eyebrow::before{content:'';width:22px;height:2px;background:var(--orange)}
   h1{
     font-weight:700;font-style:italic;
-    font-size:clamp(38px,10.5vw,50px);line-height:.98;
-    text-transform:uppercase;letter-spacing:-.5px;
+    font-size:clamp(42px,12vw,56px);line-height:.94;
+    text-transform:uppercase;letter-spacing:-1px;
+    position:relative;z-index:1;
   }
   h1 .accent{color:var(--orange)}
-  .hero p{color:var(--muted);font-size:15px;line-height:1.55;margin:18px 0 26px;max-width:34ch}
+  .hero p{color:var(--muted);font-size:15px;line-height:1.55;margin:18px 0 24px;max-width:34ch;position:relative;z-index:1}
   .freebet{
-    position:relative;
-    background:linear-gradient(135deg,var(--orange) 0%,var(--orange-deep) 100%);
-    border-radius:var(--radius);padding:22px 20px;
-    transform:rotate(-1.2deg);
-    box-shadow:0 18px 40px -14px rgba(255,106,19,.55);
+    position:relative;z-index:1;
+    background:var(--orange);color:var(--black);
+    padding:20px 18px;
+    clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%);
   }
-  .freebet-inner{transform:rotate(1.2deg)}
-  .freebet .fb-label{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;opacity:.85}
+  .freebet .fb-label{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase}
   .freebet .fb-sum{
     font-weight:700;font-style:italic;
-    font-size:44px;line-height:1;text-transform:uppercase;margin:6px 0 2px;
+    font-size:52px;line-height:1;text-transform:uppercase;margin:6px 0 4px;
   }
-  .freebet .fb-note{font-size:12px;opacity:.85}
+  .freebet .fb-note{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
 
   /* ===== SECTIONS ===== */
-  section{padding:40px 20px 8px}
+  section{padding:40px 0 0}
+  .sec-head{
+    display:flex;align-items:center;gap:12px;
+    padding:0 16px;margin-bottom:20px;
+  }
+  .sec-head::after{content:'';flex:1;height:1px;background:var(--line)}
   h2{
     font-weight:700;font-style:italic;
-    font-size:28px;line-height:1;text-transform:uppercase;
-    letter-spacing:-.3px;margin-bottom:22px;
+    font-size:26px;line-height:1;text-transform:uppercase;
+    letter-spacing:-.3px;
   }
   h2 .accent{color:var(--orange)}
 
-  /* stats */
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .stat{
-    background:var(--bg-card);border:1px solid var(--line);
-    border-radius:var(--radius);padding:18px 16px;
+  /* stats — hard grid */
+  .stats{
+    display:grid;grid-template-columns:1fr 1fr;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   }
+  .stat{
+    padding:20px 16px;
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--black);
+  }
+  .stat:nth-child(2n){border-right:none}
   .stat .num{
     font-weight:700;font-style:italic;
-    font-size:30px;color:var(--orange);line-height:1;
+    font-size:34px;color:var(--orange);line-height:1;
   }
-  .stat .cap{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4}
-  .stat.wide{grid-column:span 2;display:flex;align-items:center;gap:16px}
-  .stat.wide .num{font-size:26px}
+  .stat .cap{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4;text-transform:uppercase;letter-spacing:.3px}
+  .stat.wide{grid-column:span 2;border-right:none;border-bottom:none;display:flex;align-items:center;gap:16px}
+  .stat.wide .num{font-size:28px}
 
-  /* advantages */
-  .adv-list{display:flex;flex-direction:column;gap:10px}
+  /* advantages — stacked hard cards */
+  .adv-list{border-top:1px solid var(--line)}
   .adv{
-    background:var(--bg-card);border:1px solid var(--line);
-    border-radius:var(--radius);padding:20px 18px;
+    background:var(--black);
+    border-bottom:1px solid var(--line);
+    padding:20px 16px;
     display:flex;gap:14px;align-items:flex-start;
-    position:relative;overflow:hidden;
   }
   .adv .icon{
-    flex:none;width:44px;height:44px;border-radius:14px;
-    background:rgba(255,106,19,.12);
-    display:flex;align-items:center;justify-content:center;font-size:20px;
+    flex:none;width:44px;height:44px;
+    background:var(--bg);border:1px solid var(--orange);
+    display:flex;align-items:center;justify-content:center;font-size:19px;
   }
-  .adv h3{font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.2px;margin-bottom:5px}
+  .adv h3{font-weight:700;font-style:italic;font-size:16px;text-transform:uppercase;letter-spacing:.2px;margin-bottom:5px}
   .adv p{font-size:13px;color:var(--muted);line-height:1.5}
   .adv.featured{
-    background:linear-gradient(160deg,rgba(255,106,19,.16),var(--bg-card) 60%);
-    border-color:rgba(255,106,19,.4);
+    background:var(--orange);
   }
+  .adv.featured .icon{background:var(--black);border-color:var(--black);color:#fff}
+  .adv.featured h3{color:var(--black)}
+  .adv.featured p{color:rgba(20,20,25,.75)}
 
-  /* partners */
-  .partners{display:flex;flex-wrap:wrap;gap:8px}
+  /* partners — sharp tags */
+  .partners{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px}
   .chip{
-    font-weight:700;font-size:13px;
+    font-weight:700;font-style:italic;font-size:13px;
     text-transform:uppercase;letter-spacing:.3px;
-    border:1px solid var(--line);background:var(--bg-card);
-    border-radius:999px;padding:9px 16px;color:#D6D6DC;
+    border:1px solid var(--line);background:var(--black);
+    padding:9px 14px;color:#D6D6DC;
   }
-  .chip.hl{border-color:rgba(255,106,19,.5);color:var(--orange)}
-  .partners-note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}
+  .chip.hl{border-color:var(--orange);color:var(--orange)}
+  .partners-note{font-size:12px;color:var(--muted);margin:14px 16px 0;line-height:1.5;text-transform:uppercase;letter-spacing:.3px}
 
-  /* steps */
-  .steps{display:flex;flex-direction:column;gap:0}
-  .step{display:flex;gap:16px;position:relative;padding-bottom:26px}
-  .step:last-child{padding-bottom:0}
-  .step::before{
-    content:'';position:absolute;left:17px;top:38px;bottom:4px;
-    width:2px;background:var(--line);
+  /* steps — numbered hard rows */
+  .steps{border-top:1px solid var(--line)}
+  .step{
+    display:flex;gap:16px;align-items:flex-start;
+    padding:18px 16px;border-bottom:1px solid var(--line);
+    background:var(--black);
   }
-  .step:last-child::before{display:none}
   .step-num{
-    flex:none;width:36px;height:36px;border-radius:50%;
-    background:var(--orange);color:#fff;
-    font-weight:700;font-style:italic;font-size:15px;
+    flex:none;width:40px;height:40px;
+    background:var(--orange);color:var(--black);
+    font-weight:700;font-style:italic;font-size:18px;
     display:flex;align-items:center;justify-content:center;
+    clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);
   }
-  .step h3{font-weight:700;font-size:14px;text-transform:uppercase;margin:7px 0 4px}
+  .step h3{font-weight:700;font-style:italic;font-size:15px;text-transform:uppercase;margin-bottom:4px}
   .step p{font-size:13px;color:var(--muted);line-height:1.5}
 
   /* app */
   .app-card{
-    background:var(--bg-card);border:1px solid var(--line);
-    border-radius:var(--radius);padding:24px 20px;text-align:center;
+    margin:0 16px;
+    background:var(--black);border:1px solid var(--line);
+    border-top:3px solid var(--orange);
+    padding:26px 20px;text-align:center;
   }
-  .app-card .phone{font-size:40px;margin-bottom:12px;display:block}
+  .app-card .phone{font-size:38px;margin-bottom:12px;display:block}
   .app-card h3{font-weight:700;font-style:italic;font-size:22px;text-transform:uppercase;margin-bottom:8px}
   .app-card p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:18px}
-  .store-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .store-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
   .store{
-    font-size:12px;font-weight:700;color:#fff;
-    border:1px solid var(--line);background:var(--bg-elev);
-    border-radius:12px;padding:10px 14px;
+    font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px;
+    border:1px solid var(--line);background:var(--bg);
+    padding:10px 14px;
   }
 
   /* footer */
-  footer{padding:36px 20px 24px;border-top:1px solid var(--line);margin-top:44px}
+  footer{padding:32px 16px 24px;border-top:2px solid var(--orange);margin-top:44px;background:var(--black)}
   .badge18{
     display:inline-flex;align-items:center;justify-content:center;
-    width:44px;height:44px;border-radius:50%;
+    width:44px;height:44px;
     border:2px solid var(--orange);color:var(--orange);
-    font-weight:700;font-size:15px;
+    font-weight:700;font-style:italic;font-size:15px;
     margin-bottom:14px;
   }
   footer p{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:10px}
 
-  /* sticky CTA */
+  /* sticky CTA — stays a pill */
   .sticky-cta{
     position:fixed;bottom:0;left:50%;transform:translateX(-50%);
     width:100%;max-width:480px;z-index:60;
@@ -227,11 +242,8 @@
   }
   .cta-btn{
     display:flex;align-items:center;justify-content:center;gap:8px;
-    width:100%;border:none;cursor:pointer;
-    background:var(--orange);color:#fff;
-    font-family:'WINLINE Sans';font-weight:700;font-style:italic;
-    font-size:16px;text-transform:uppercase;letter-spacing:.4px;
-    border-radius:16px;padding:17px;
+    width:100%;
+    font-size:16px;padding:17px;
     box-shadow:0 10px 30px -8px rgba(255,106,19,.6);
     transition:transform .15s;
   }
@@ -260,7 +272,7 @@
       <path d="M122.104 12.5476L119.98 24.5849L115.731 12.4689C115.495 11.8002 114.866 11.3675 114.079 11.3675H110.539C109.87 11.3675 109.241 11.9182 109.083 12.5869L105.504 32.8064C105.386 33.4751 105.818 34.0258 106.487 34.0258H109.516C110.185 34.0258 110.814 33.4751 110.972 32.8064L113.096 20.7691L117.226 32.8851C117.462 33.5538 118.092 33.9865 118.878 33.9865H122.576C123.245 33.9865 123.874 33.4358 124.032 32.767L127.611 12.5476C127.729 11.8788 127.297 11.3281 126.628 11.3281H123.52C122.852 11.3675 122.222 11.8788 122.104 12.5476Z" fill="white"/>
     </svg>
   </div>
-  <button class="header-btn">Войти</button>
+  <button class="btn-pill header-btn">Войти</button>
 </header>
 
 <div class="ticker-wrap" aria-hidden="true">
@@ -268,24 +280,22 @@
 </div>
 
 <section class="hero">
-  <div class="eyebrow">Легальный букмекер · с 2009 года</div>
+  <div class="eyebrow">Легальный букмекер · с 2009</div>
   <h1>Здесь<br>ставят<br><span class="accent">на своих</span></h1>
   <p>Winline — один из крупнейших букмекеров России. Топовые коэффициенты, бесплатные трансляции и выплаты за минуты.</p>
   <div class="freebet">
-    <div class="freebet-inner">
-      <div class="fb-label">Фрибет новичкам</div>
-      <div class="fb-sum">3 000 ₽</div>
-      <div class="fb-note">без депозита — сразу после регистрации</div>
-    </div>
+    <div class="fb-label">Фрибет новичкам</div>
+    <div class="fb-sum">3 000 ₽</div>
+    <div class="fb-note">Без депозита — сразу после регистрации</div>
   </div>
 </section>
 
 <section>
-  <h2 class="reveal">Winline <span class="accent">в цифрах</span></h2>
+  <div class="sec-head"><h2 class="reveal">Winline <span class="accent">в цифрах</span></h2></div>
   <div class="stats">
     <div class="stat reveal"><div class="num">17</div><div class="cap">лет на рынке ставок в России</div></div>
     <div class="stat reveal"><div class="num">1000+</div><div class="cap">событий в линии каждый день</div></div>
-    <div class="stat reveal"><div class="num">150</div><div class="cap">рынков на топ-матчи АПЛ и Лиги чемпионов</div></div>
+    <div class="stat reveal"><div class="num">150</div><div class="cap">рынков на топ-матчи АПЛ и ЛЧ</div></div>
     <div class="stat reveal"><div class="num">24/7</div><div class="cap">служба поддержки на связи</div></div>
     <div class="stat wide reveal">
       <div class="num">РПЛ</div>
@@ -295,7 +305,7 @@
 </section>
 
 <section>
-  <h2 class="reveal">Почему <span class="accent">Winline</span></h2>
+  <div class="sec-head"><h2 class="reveal">Почему <span class="accent">Winline</span></h2></div>
   <div class="adv-list">
     <div class="adv featured reveal">
       <div class="icon">⚡</div>
@@ -315,7 +325,7 @@
       <div class="icon">📺</div>
       <div>
         <h3>Бесплатные трансляции</h3>
-        <p>Футбол, хоккей, теннис, MMA и киберспорт в прямом эфире. Можно смотреть два матча одновременно.</p>
+        <p>Футбол, хоккей, теннис, MMA и киберспорт в прямом эфире. Два матча одновременно.</p>
       </div>
     </div>
     <div class="adv reveal">
@@ -336,7 +346,7 @@
 </section>
 
 <section>
-  <h2 class="reveal">Ставим <span class="accent">на своих</span></h2>
+  <div class="sec-head"><h2 class="reveal">Ставим <span class="accent">на своих</span></h2></div>
   <div class="partners reveal">
     <div class="chip hl">РПЛ</div>
     <div class="chip">Спартак</div>
@@ -347,11 +357,11 @@
     <div class="chip">Автомобилист</div>
     <div class="chip hl">Virtus.pro</div>
   </div>
-  <p class="partners-note reveal">Амбассадоры бренда — Рональдиньо, Даниил Медведев, Андрей Рублёв и Константин Генич.</p>
+  <p class="partners-note reveal">Амбассадоры — Рональдиньо, Даниил Медведев, Андрей Рублёв, Константин Генич</p>
 </section>
 
 <section>
-  <h2 class="reveal">Как <span class="accent">начать</span></h2>
+  <div class="sec-head"><h2 class="reveal">Как <span class="accent">начать</span></h2></div>
   <div class="steps">
     <div class="step reveal">
       <div class="step-num">1</div>
@@ -389,7 +399,7 @@
 </footer>
 
 <div class="sticky-cta">
-  <button class="cta-btn">Забрать фрибет 3 000 ₽ →</button>
+  <button class="btn-pill cta-btn">Забрать фрибет 3 000 ₽ →</button>
 </div>
 
 <script>
