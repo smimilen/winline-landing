@@ -261,6 +261,59 @@
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* ===== DESKTOP: full-width ===== */
+  @media (min-width:768px){
+    body{max-width:none;border-left:none;border-right:none}
+    header{padding:14px 5vw}
+    .logo svg{height:34px}
+
+    .hero{padding:0 5vw 72px}
+    .hero-ribbon{width:106%;margin:24px -3vw 16px;transform:rotate(-2deg)}
+    @keyframes ribbon-in{
+      from{opacity:0;transform:rotate(-2deg) translateX(-60px)}
+      to{opacity:1;transform:rotate(-2deg) translateX(0)}
+    }
+    h1{font-size:clamp(72px,10vw,168px);letter-spacing:-3px}
+    .hero p{font-size:19px;max-width:52ch;margin:26px 0 34px}
+    .freebet{padding:34px 38px;clip-path:polygon(0 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%)}
+    .freebet .fb-label{font-size:13px}
+    .freebet .fb-sum{font-size:92px}
+    .freebet .fb-note{font-size:14px}
+
+    section{padding:64px 0 0}
+    .sec-head{padding:0 5vw;margin-bottom:28px}
+    h2{font-size:44px}
+
+    .stats{grid-template-columns:repeat(4,1fr)}
+    .stat{padding:28px 24px}
+    .stat .num{font-size:48px}
+    .stat:nth-child(2n){border-right:1px solid var(--line)}
+    .stat:nth-child(4n){border-right:none}
+    .stat.wide{grid-column:span 4;border-right:none}
+    .stat.wide .num{font-size:40px}
+
+    .adv-list{display:grid;grid-template-columns:1fr 1fr}
+    .adv{padding:28px 5vw 28px 24px;border-right:1px solid var(--line)}
+    .adv:nth-child(2n){border-right:none}
+    .adv:last-child{grid-column:span 2;border-right:none}
+    .adv h3{font-size:19px}
+    .adv p{font-size:14px;max-width:52ch}
+
+    .partners{padding:0 5vw}
+    .chip{font-size:15px;padding:11px 18px}
+    .partners-note{margin:16px 5vw 0}
+
+    .steps{display:grid;grid-template-columns:repeat(3,1fr)}
+    .step{border-right:1px solid var(--line);padding:26px 24px}
+    .step:nth-child(3n){border-right:none}
+
+    .app-card{margin:0 5vw;padding:40px}
+    .app-card h3{font-size:30px}
+
+    footer{padding:44px 5vw 32px}
+    .sticky-cta{max-width:560px}
+  }
 </style>
 </head>
 <body>
